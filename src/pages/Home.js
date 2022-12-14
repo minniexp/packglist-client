@@ -36,7 +36,7 @@ export default function Home(props) {
     
     useEffect(()=>{
 
-        Axios.get(`${apiURL}/getlist`)
+        Axios.get("https://finalcheck-server.onrender.com/getlist")
         .then((response)=>{
         let output= response.data.rows
         handleArray(output, "title")

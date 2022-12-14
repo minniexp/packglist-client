@@ -49,12 +49,19 @@ export default function List(props) {
         <div className='todo-container'>
             <p>{category}</p>
             <div className="checklist-total">
-                {tasks.map(task => (
-                    <div className="checklist">
-                        <label htmlFor="completed">{task}</label>
-                        <input className="checkbox" type="checkbox" id="completed"/>    
-                    </div>
-                ))}
+                <table>
+                    {tasks.map(task => (
+                        <tr className="checklist">
+                            <th className="checklist-description">
+                                <label htmlFor="completed">{task}</label>
+                            </th>
+                            <th className="checklist-checkbox">
+                                <input className="checkbox" type="checkbox" id="completed"/>    
+                            </th>
+                        </tr>
+                    ))}
+                </table>
+
             </div>
             <br/>
             <br/>

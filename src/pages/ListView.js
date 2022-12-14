@@ -38,14 +38,14 @@ export default function ListView(props) {
       return (
         <div className="listcontent-container">
             <div className="mylist-container">
-                <h2> {listName}</h2>
-                <li>List1</li>
-                <li>List2</li>
+                <h2 className="listName-header"> {listName}</h2>
+                {/* <li>List1</li>
+                <li>List2</li> */}
             </div>
             <div className="list-container">
                 {nodupliatecategory.map(category => (<List listName={listName} category={category}/>))}
                 <div className="new-list-container">
-                    {newListClick ? <NewList listName={listName}></NewList>: <button onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
+                    {newListClick ? <NewList listName={listName}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
                     
                 </div>
             </div>

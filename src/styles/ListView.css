@@ -9,13 +9,21 @@ li {
 }
 
 .mylist-container {
-    background-color: aqua;
+    background-color: ghostwhite;
     height:860px;
-    width: 15%;
+    width: 10%;
 
 }
 
 .list-container{
     display: flex;
     flex-direction: row;
+}
+
+.listName-header{
+    /* border: 2px solid #219ebc; */
+    margin: 0px;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 6px;
 }

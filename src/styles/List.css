@@ -2,19 +2,28 @@
     display:flex;
     flex-direction: column;
     width: 250px;
-    background-color: rgb(133, 130, 130);
-    border: 2px solid red;
+    background-color:rgba(133,130,130, 0.7);
+    border: 1.5px solid #E5E7EB;
+    border-radius: 6px;
     padding: 10px 20px;
     margin: 10px;
 }
 
 .checklist{
-    display: block;
-    border: 2px solid pink;
-
+    display: flex;
+    /* border: 2px solid pink; */
+    border-bottom: 2px solid #E5E7EB;
+    width: 230px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    margin: 0px;
+    justify-content: space-between;
 }
-.checkbox{
-    
+
+.checklist-checkbox{
+    flex: none;
+    order: 1;
+    align-self: flex-end;
 }
 
 #completed {
@@ -24,6 +33,7 @@
 .checklist-total{
     min-height: 650px;
     border: 1px solid white;
+    border-radius: 6px;
 }
 
 p {
@@ -39,3 +49,9 @@ p {
     align-self: flex-end;
 }
 
+
+.new-list-btn{
+    width: 100px;
+    height: 50px;
+    margin-top: 10px;
+}

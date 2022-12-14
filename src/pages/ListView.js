@@ -27,7 +27,7 @@ export default function ListView(props) {
     const nodupliatecategory = [...new Set(categories)]
 
     useEffect(()=>{
-     Axios.get(`http://localhost:3000/getlist`)
+     Axios.get(`https://finalcheck-server.onrender.com/getlist`)
     .then((response)=>{
         let output= response.data.rows
         handleArray(output, "category", "title", listName)

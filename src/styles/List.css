@@ -1,0 +1,41 @@
+.todo-container{
+    display:flex;
+    flex-direction: column;
+    width: 250px;
+    background-color: rgb(133, 130, 130);
+    border: 2px solid red;
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+.checklist{
+    display: block;
+    border: 2px solid pink;
+
+}
+.checkbox{
+    
+}
+
+#completed {
+
+}
+
+.checklist-total{
+    min-height: 650px;
+    border: 1px solid white;
+}
+
+p {
+    padding: 5px;
+    margin: 0px;
+}
+
+.checklist-add{
+    display: flex;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    align-self: flex-end;
+}
+

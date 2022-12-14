@@ -1,0 +1,94 @@
+.header {
+    /* position: fixed; */
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    background: #0c245A;
+    box-shadow: 0px 8px 7.4564px rgba(0, 0, 0, 0.1);
+
+}
+body {
+    background: ghostwhite;
+    color: black;
+}
+
+.navbar {
+    background-color: #0c245A;
+}
+
+.navbar-logo {
+    color: ghostwhite;
+    margin-left: 10px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+
+}
+
+.nav-menu li {
+    padding: 0 1rem;
+    list-style-type: none;  
+
+}
+
+.nav-menu a {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: ghostwhite;
+}
+
+.nav-menu a:hover {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #1f5ff5;
+}
+
+/* add highlighted when link is clicked */
+
+.hamburger {
+    display: none;
+}
+
+
+@media screen and (max-width:1240px) {
+    .hamburger {
+        display: block;
+        margin-right: 30px;
+    }
+
+    .nav-menu {
+        position: absolute;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: -100%;
+        text-align: center;
+        width: 100%;
+        height: 100vh;
+        transition: 0.3s;
+        z-index: -1;
+        background: rgba(50,50,50, .9);
+        
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        padding: 1rem 0;
+    }
+    .nav-menu a {
+        font-size: 2rem;
+    }
+}
+

@@ -1,0 +1,21 @@
+li {
+    list-style-type: none;  
+
+}
+
+.listcontent-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.mylist-container {
+    background-color: aqua;
+    height:860px;
+    width: 15%;
+
+}
+
+.list-container{
+    display: flex;
+    flex-direction: row;
+}

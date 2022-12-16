@@ -49,8 +49,8 @@ export default function List(props) {
             })
     }, [newTaskClick])
     
-    const submitReview = () => {
-
+    const submitReview = (e) => {
+        e.preventDefault()
 
         Axios.post(`${apiURL}/additem`, {title: listName, category:category, item:newItem}).then(()=>{
           console.log("successful insert")
@@ -99,8 +99,11 @@ export default function List(props) {
             
 
             <div className="checklist-add">
-                <input type="text" name="username" className="checklist-add" ref={inputRef} onChange={handleNewTask} />
-                <button onClick={submitReview}>Submit</button>
+                <form>
+                    <input type="text" name="username" className="checklist-add" ref={inputRef} onChange={handleNewTask} />
+                    <button onClick={submitReview} type="submit">Submit</button>
+                </form>
+
             </div>
 
         </div>

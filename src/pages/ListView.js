@@ -38,7 +38,6 @@ export default function ListView(props) {
         setDeleteCateogryClick(prev=>!prev)
     }
 
-
     useEffect(()=>{
         setCategories([])
         Axios.get(`${apiURL}/getlist`)
@@ -53,21 +52,17 @@ export default function ListView(props) {
       return (
         <div className="listcontent-container">
             <div className="mylist-container">
-                <h2 className="listName-header"> <Change select="title" description={listName} handleDeleteCateogry={handleDeleteCateogry}/></h2>
+                <h2 className="listName-header"> <Change select="title" description={listName} /></h2>
                 {/* <li>List1</li>
                 <li>List2</li> */}
             </div>
             <div className="list-container">
-                {nodupliatecategory.map(category => (<List listName={listName} category={category}/>))}
+                {nodupliatecategory.map(category => (<List listName={listName} category={category} handleDeleteCateogry={handleDeleteCateogry}/>))}
                 <div className="new-list-container">
                     {newListClick ? <NewList listName={listName} newListCreated={newListCreated} handleNewListCreated={handleNewListCreated}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
-                {/* {deleteCateogryClick?"true":"false"} */}
                 </div>
                 {/* <button onClick={handleDeleteCateogry}>delete</button> */}
             </div>
-            
-
-
 
         </div>
     )

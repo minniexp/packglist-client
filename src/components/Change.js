@@ -29,12 +29,15 @@ export default function Change(props) {
         if (selectComp === "category") {
             Axios.post(`${apiURL}/deletecategory`, {category: descriptionComp, title: titleComp}).then(()=>{
                 console.log(`successfuly deleted ${selectComp}`)
+                props.handleDeleteCateogry()
                 
             })
         } 
         else if (selectComp === "title") {
             Axios.post(`${apiURL}/deletelist`, {title: descriptionComp}).then(()=>{
                 console.log(`successfuly deleted ${selectComp}`)
+                props.handleDeleteCateogry()
+
             })
         }
         setDeleteSelect(true)
@@ -63,16 +66,20 @@ export default function Change(props) {
         if (selectComp === "category") {
             Axios.post(`${apiURL}/editcategory`, {category: newSelect, prevcategory: descriptionComp, title: titleComp}).then(()=>{
                 console.log(`successfuly deleted ${selectComp}`)
+                inputRef.current.value=""
+                setOptionsSelect(prev=>!prev)
+                setCurrentSelect(newSelect)
             })
         } 
         else if (selectComp === "title") {
             Axios.post(`${apiURL}/edittitle`, {title: newSelect, prevtitle: descriptionComp}).then(()=>{
                 console.log(`successfuly deleted ${selectComp}`)
+                inputRef.current.value=""
+                setOptionsSelect(prev=>!prev)
+                setCurrentSelect(newSelect)
             })
         } 
-        inputRef.current.value=""
-        setOptionsSelect(prev=>!prev)
-        setCurrentSelect(newSelect)
+
     }
 
 
@@ -95,11 +102,11 @@ export default function Change(props) {
                             <MdOutlineCancel onClick={handleExit} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)', maxWidth: '70%'}:{color: '#fff'} } />
                             <SlTrash onClick={handleDeleteSelect} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)'}:{color: '#fff'} } />
                         </div>
-
                     </div>
                     :
                     <div className="select-total-container">
                         {currentSelect}
+
                         <div className="options">
                             <th onClick={()=>setOptionsSelect(prev=>!prev)}>
                                 <SlOptionsVertical size={20} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)'}:{color: '#fff'} }/>

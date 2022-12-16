@@ -95,6 +95,7 @@ p {
 
 .select-list-container{
     display: flex;
+    justify-content: space-between;
 }
 .select-list-form{
     display:flex;

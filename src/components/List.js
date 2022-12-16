@@ -26,6 +26,8 @@ export default function List(props) {
         setNewItem(e.target.value)
     }
 
+
+
     
     function handleObjectArray(input, property, titleproperty, filtertitle, categoryproperty, filtercategory){
     for (let i = 0; i < input.length; i++) {
@@ -72,7 +74,7 @@ export default function List(props) {
     return (
         <div className='todo-container'>
 
-            <p><Change select="category" description={category} title={listName}/></p>
+            <p><Change select="category" description={category} title={listName} handleDeleteCateogry={props.handleDeleteCateogry}/></p>
             <div className="checklist-total">
                 <table>
                     {taskObjects.map((item, key) => (
@@ -95,7 +97,7 @@ export default function List(props) {
             <br/>
             <br/>
             
-         
+
             <div className="checklist-add">
                 <input type="text" name="username" className="checklist-add" ref={inputRef} onChange={handleNewTask} />
                 <button onClick={submitReview}>Submit</button>

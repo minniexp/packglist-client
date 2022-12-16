@@ -13,8 +13,7 @@ export default function List(props) {
     const category = props.category
     const [taskObjects, settaskObjects] = useState([])
     const [newTaskClick, setNewTaskClick] = useState(false)
-    const [deleteCategory, setDeleteCategory] = useState(false)
-    const [optionsCategory, setOptionsCategory] = useState(false)
+
 
     
     

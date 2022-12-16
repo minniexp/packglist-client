@@ -10,6 +10,7 @@ export default function ListView(props) {
     const [categories, setCategories] = useState([])
     const [newListClick, setNewListClick] = useState(false)
     const [newListCreated, setNewListCreated] = useState(false)
+    const [deleteCateogryClick, setDeleteCateogryClick] = useState(false)
 
     const apiURL = "https://finalcheck-server.onrender.com"
 
@@ -28,27 +29,41 @@ export default function ListView(props) {
 
     const nodupliatecategory = [...new Set(categories)]
 
+    const handleNewListCreated = () => {
+        setNewListCreated(prev=>!prev)
+    }
+    
+    // Need to fix handleDelete
+    const handleDeleteCateogry = () => {
+        setDeleteCateogryClick(prev=>!prev)
+    }
+
+
     useEffect(()=>{
-     Axios.get(`https://finalcheck-server.onrender.com/getlist`)
-    .then((response)=>{
-        let output= response.data.rows
-        handleArray(output, "category", "title", listName)
-        return output
-    })
-    },[newListCreated])
+        setCategories([])
+        Axios.get(`${apiURL}/getlist`)
+            .then((response)=>{
+            let output= response.data.rows
+            handleArray(output, "category", "title", listName)
+            setNewListClick(false)
+            return output
+            })
+    },[newListCreated, deleteCateogryClick])
 
       return (
         <div className="listcontent-container">
             <div className="mylist-container">
-                <h2 className="listName-header"> <Change select="title" description={listName}/></h2>
+                <h2 className="listName-header"> <Change select="title" description={listName} handleDeleteCateogry={handleDeleteCateogry}/></h2>
                 {/* <li>List1</li>
                 <li>List2</li> */}
             </div>
             <div className="list-container">
                 {nodupliatecategory.map(category => (<List listName={listName} category={category}/>))}
                 <div className="new-list-container">
-                    {newListClick ? <NewList listName={listName} ChangeListCreated={input => setNewListCreated(input)}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
+                    {newListClick ? <NewList listName={listName} newListCreated={newListCreated} handleNewListCreated={handleNewListCreated}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
+                {/* {deleteCateogryClick?"true":"false"} */}
                 </div>
+                {/* <button onClick={handleDeleteCateogry}>delete</button> */}
             </div>
             
 

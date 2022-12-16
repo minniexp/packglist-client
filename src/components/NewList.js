@@ -19,29 +19,33 @@ export default function NewList(props) {
     const submitReview = () => {
         Axios.post(`${apiURL}/additem`, {title: listName, category:newCategory, item:newItem}).then(()=>{
           console.log("successful insert")
-
+          props.handleNewListCreated()
         })
         setTasks(oldArray =>[...oldArray, newItem])
         inputRef.current.value=""
-        props.ChangeListCreated=true
         };
     
     return (
         <div className='todo-container'>
-            <input 
-                type="text" 
-                name="newCategory" 
-                value={newCategory}
-                className="checklist-add" 
-                onChange={(e)=>setNewCategory(e.target.value)} />
-            <div className="checklist-total">
-                {tasks.map(task => (
-                    <div className="checklist">
-                        <label htmlFor="completed">{task}</label>
-                        <input className="checkbox" type="checkbox" id="completed"/>    
-                    </div>
-                ))}
-            </div>
+            
+                <div>
+                    <input 
+                        type="text" 
+                        name="newCategory" 
+                        value={newCategory}
+                        className="checklist-add" 
+                        onChange={(e)=>setNewCategory(e.target.value)} />
+
+                </div>
+            
+                <div className="checklist-total">
+                    {tasks.map(task => (
+                        <div className="checklist">
+                            <label htmlFor="completed">{task}</label>
+                            <input className="checkbox" type="checkbox" id="completed"/>    
+                        </div>
+                    ))}
+                </div>
             <br/>
             <br/>
             

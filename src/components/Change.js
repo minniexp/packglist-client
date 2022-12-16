@@ -1,7 +1,7 @@
 import React, {useState, useRef} from "react"
 import { SlOptionsVertical, SlTrash } from "react-icons/sl"
 import {MdOutlineCancel} from "react-icons/md"
-import { confirmAlert } from 'react-confirm-alert'
+// import { confirmAlert } from 'react-confirm-alert'
 import Axios from "axios"
 
 import '../styles/List.css'
@@ -24,10 +24,12 @@ export default function Change(props) {
     }
 
 
-    function handleDeleteSelect() {
+    const handleDeleteSelect = () => {
+        console.log("handling")
         if (selectComp === "category") {
             Axios.post(`${apiURL}/deletecategory`, {category: descriptionComp, title: titleComp}).then(()=>{
                 console.log(`successfuly deleted ${selectComp}`)
+                
             })
         } 
         else if (selectComp === "title") {

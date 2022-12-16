@@ -23,6 +23,7 @@ export default function NewList(props) {
         })
         setTasks(oldArray =>[...oldArray, newItem])
         inputRef.current.value=""
+        props.ChangeListCreated=true
         };
     
     return (

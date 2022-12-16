@@ -9,9 +9,9 @@ li {
 }
 
 .mylist-container {
-    background-color: ghostwhite;
+    background-color: #F9FAFB;
     height:860px;
-    width: 10%;
+    width: 13%;
 
 }
 
@@ -26,4 +26,8 @@ li {
     margin-left: 10px;
     padding: 10px;
     border-radius: 6px;
+}
+
+textarea{
+    resize: none;
 }

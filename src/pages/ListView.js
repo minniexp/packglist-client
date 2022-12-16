@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import List from '../components/List'
 import NewList from '../components/NewList'
-
+import Change from '../components/Change'
 import Axios from "axios";
 import '../styles/ListView.css'
 
@@ -9,6 +9,8 @@ export default function ListView(props) {
     const listName = props.listTitle
     const [categories, setCategories] = useState([])
     const [newListClick, setNewListClick] = useState(false)
+    const [newListCreated, setNewListCreated] = useState(false)
+
     const apiURL = "https://finalcheck-server.onrender.com"
 
 
@@ -33,20 +35,19 @@ export default function ListView(props) {
         handleArray(output, "category", "title", listName)
         return output
     })
-    },[])
+    },[newListCreated])
 
       return (
         <div className="listcontent-container">
             <div className="mylist-container">
-                <h2 className="listName-header"> {listName}</h2>
+                <h2 className="listName-header"> <Change select="title" description={listName}/></h2>
                 {/* <li>List1</li>
                 <li>List2</li> */}
             </div>
             <div className="list-container">
                 {nodupliatecategory.map(category => (<List listName={listName} category={category}/>))}
                 <div className="new-list-container">
-                    {newListClick ? <NewList listName={listName}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
-                    
+                    {newListClick ? <NewList listName={listName} ChangeListCreated={input => setNewListCreated(input)}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
                 </div>
             </div>
             

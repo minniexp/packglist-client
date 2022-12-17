@@ -15,7 +15,6 @@ export default function ListView(props) {
     // const [currentList, setCurrentList] = useState(()=>{
     //     return window.localStorage.getItem('listClicked') || []
     // })
-    const [counter, setCounter] = useState(0)
     // const [currentList, setCurrentList] = useState(props.listTitle) 
 
     let listName=props.listTitle

@@ -13,6 +13,8 @@ function App() {
   const inputRef = useRef()
   const inputSearchRef = useRef()
 
+
+
   // const filteredItems = items.filter(item => {
   // return item.toLowerCase().includes(query.toLowerCase())
   // })
@@ -82,7 +84,6 @@ function App() {
                   listTitle={query}/>
                 } />
       </Routes>
-
       {/* Serach Bar */}
       {/* Search: 
       <input onSubmit = {onSearch}

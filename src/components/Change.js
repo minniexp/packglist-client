@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react"
+import React, {useState, useRef, useEffect} from "react"
 import { SlOptionsVertical, SlTrash } from "react-icons/sl"
 import {MdOutlineCancel} from "react-icons/md"
 // import { confirmAlert } from 'react-confirm-alert'
@@ -23,6 +23,10 @@ export default function Change(props) {
         setOptionsSelect(prev=>!prev)
     }
 
+    useEffect(()=>{
+        setCurrentSelect(descriptionComp)
+    },[])
+
 
     const handleDeleteSelect = () => {
         console.log("handling")
@@ -44,6 +48,7 @@ export default function Change(props) {
         setOptionsSelect(prev=>!prev)
         };
     
+
     // function handleDeleteSelect() {
     //     confirmAlert({
     //         title: 'Confirm to submit',
@@ -62,7 +67,7 @@ export default function Change(props) {
     // }
 
 
-    function hadnleEditSelect(){
+    function handleEditSelect(){
         if (selectComp === "category") {
             Axios.post(`${apiURL}/editcategory`, {category: newSelect, prevcategory: descriptionComp, title: titleComp}).then(()=>{
                 console.log(`successfuly deleted ${selectComp}`)
@@ -96,7 +101,7 @@ export default function Change(props) {
                                 onChange={(e)=>setNewSelect(e.target.value)} 
                                 style={selectComp==="title"?{height: '40px'}:{height: '20px'} }
                             />
-                            <button className='select-list-form-btn' onClick={hadnleEditSelect}>Edit</button>
+                            <button className='select-list-form-btn' onClick={handleEditSelect}>Edit</button>
                         </div>
                         <div className='select-list-icons'>
                             <MdOutlineCancel onClick={handleExit} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)', maxWidth: '70%'}:{color: '#fff'} } />

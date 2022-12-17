@@ -3,6 +3,8 @@ import List from '../components/List'
 import NewList from '../components/NewList'
 import Change from '../components/Change'
 import Axios from "axios";
+import {Link} from "react-router-dom"
+
 import '../styles/ListView.css'
 
 export default function ListView(props) {
@@ -10,10 +12,9 @@ export default function ListView(props) {
     const [newListClick, setNewListClick] = useState(false)
     const [newListCreated, setNewListCreated] = useState(false)
     const [deleteCateogryClick, setDeleteCateogryClick] = useState(false)
-    const [currentList, setCurrentList] = useState(()=>{
-        setCounter(prev=>prev+1)
-        return window.localStorage.getItem('listClicked') || props.listTitle
-    })
+    // const [currentList, setCurrentList] = useState(()=>{
+    //     return window.localStorage.getItem('listClicked') || []
+    // })
     const [counter, setCounter] = useState(0)
     // const [currentList, setCurrentList] = useState(props.listTitle) 
 
@@ -45,11 +46,12 @@ export default function ListView(props) {
     }
 
     useEffect(()=>{
+        // setCurrentList(props.listTitle)
         setCategories([])
         Axios.get(`${apiURL}/getlist`)
             .then((response)=>{
             let output= response.data.rows
-            handleArray(output, "category", "title", currentList)
+            handleArray(output, "category", "title", listName)
             setNewListClick(false)
             return output
             })
@@ -71,29 +73,38 @@ export default function ListView(props) {
     
     // },[])
 
-    function GetList() {
-        
-        
-    }
-    useEffect(()=>{
-        {window.localStorage.setItem('listClicked', listName)
-    }},[counter])
+    // window.onload = function () {
+    //     const data = window.localStorage.getItem('listClicked')
+    //     if (data !== null ) {
+    //         setCurrentList(data)
+    //         console.log("useeffect running") 
+    //     }
+    // }
+    // useEffect(()=>{
+    //     window.localStorage.setItem('listClicked', currentList)
+    // },[currentList])
 
       return (
-        <div className="listcontent-container">
-            <div className="mylist-container">
-                <h2 className="listName-header"> <Change select="title" description={currentList} /></h2>
-                {/* <li>List1</li>
-                <li>List2</li> */}
-            </div>
-            <div className="list-container">
-                {nodupliatecategory.map(category => (<List listName={currentList} category={category} handleDeleteCateogry={handleDeleteCateogry}/>))}
-                <div className="new-list-container">
-                    {newListClick ? <NewList listName={currentList} newListCreated={newListCreated} handleNewListCreated={handleNewListCreated}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
+        listName ? 
+            <div className="listcontent-container">
+                <div className="mylist-container">
+                    <h2 className="listName-header"> <Change select="title" description={listName} /></h2>
+                    {/* <li>List1</li>
+                    <li>List2</li> */}
                 </div>
-                {/* <button onClick={handleDeleteCateogry}>delete</button> */}
+                <div className="list-container">
+                    {nodupliatecategory.map(category => (<List listName={listName} category={category} handleDeleteCateogry={handleDeleteCateogry}/>))}
+                    <div className="new-list-container">
+                        {newListClick ? <NewList listName={listName} newListCreated={newListCreated} handleNewListCreated={handleNewListCreated}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
+                    </div>
+                    {/* <button onClick={handleDeleteCateogry}>delete</button> */}
+                </div>
+            </div>  
+            : 
+            <div>
+                <Link to="/"><p  className="link-homepage">Go back to Homepage</p></Link> 
             </div>
-            {currentList}
-        </div>
+        
+
     )
 }

@@ -104,8 +104,8 @@ export default function Change(props) {
                             <button className='select-list-form-btn' onClick={handleEditSelect}>Edit</button>
                         </div>
                         <div className='select-list-icons'>
-                            <MdOutlineCancel onClick={handleExit} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)', maxWidth: '70%'}:{color: '#fff'} } />
                             <SlTrash onClick={handleDeleteSelect} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)'}:{color: '#fff'} } />
+                            <MdOutlineCancel onClick={handleExit} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)', maxWidth: '70%'}:{color: '#fff'} } />
                         </div>
                     </div>
                     :

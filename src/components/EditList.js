@@ -55,8 +55,8 @@ export default function EditList(props) {
                             <input className='edit-list-form-input' ref={inputRef} type="text" placeholder={props.task} onChange={(e)=>setEditTask(e.target.value)} />
                             <button className='edit-list-form-btn' onClick={editItem}>Edit</button>
                         </div>
-                        <MdOutlineCancel onClick={handleExit} size={20} style={{color: '#fff'}} />
                         <SlTrash onClick={deleteItem} size={20} style={{color: '#fff'}} />
+                        <MdOutlineCancel onClick={handleExit} size={20} style={{color: '#fff'}} />
                     </div>
 
                     :

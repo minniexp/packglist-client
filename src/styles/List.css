@@ -29,10 +29,11 @@
 
 .checklist-total-container{
     display: flex;
-    width:100%;
+    width: 100%;
     justify-content: space-between;
     
 }
+
 .checklist-container{
     width: 210px;
     text-align: left;
@@ -40,6 +41,7 @@
 
 .options{
     /* align-self:flex-end; */
+    cursor: pointer;
 
     color: #fff;
 }
@@ -99,4 +101,43 @@ p {
 }
 .select-list-form{
     display:flex;
+}
+
+@media screen and (max-width:1240px) {
+    .todo-container{
+        display:block;
+        width: 85%;
+   
+    }
+
+    .checklist-total-container{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .checklist-total{
+        width: 100%;
+        min-height: 50px;
+    }
+
+    .checklist-container{
+        width: 100%;
+        text-align: left;
+
+    }
+    .checklist{
+        width: 100%;
+
+    }
+
+    .options{
+        cursor: pointer;
+    }
+    .select-list-form-input{
+        width: 300px;
+    }
+
+    .edit-list-form-input{
+        width: 185px;
+    }
 }

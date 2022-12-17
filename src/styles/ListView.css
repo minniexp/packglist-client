@@ -49,3 +49,35 @@ textarea{
     text-decoration: none;
 
 }
+
+.new-list-btn{
+    cursor: pointer;
+}
+
+@media screen and (max-width:1240px) {
+    .listcontent-container{
+        display: block;
+    }
+
+    .mylist-container{
+        display: block;
+        width: 100%;
+        height: 40px;
+    }
+    .new-list-container{
+        display: block;
+        width: 100%;
+    }
+
+    .list-container{
+        display: block;
+
+    }
+    .new-list-btn{
+        display: block;
+        width: 50%;
+        margin: 0 auto;
+        cursor: pointer;
+
+    }
+}

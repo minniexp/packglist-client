@@ -55,9 +55,10 @@
     width: 125px;
     height: 125px;
     font-size: 1.3em;
-
-    background-color: #8ecae6;
-    border: none;
+    color: #2a9d8f;
+    font-weight: bold;
+    background-color: rgba(16, 62, 56, 0.25);
+    border: 2px solid #2a9d8f;
     border-radius: 10px;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
     margin: 10px;

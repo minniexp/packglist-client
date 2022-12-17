@@ -17,7 +17,7 @@ const Navbar = (props) => {
                 <div className="navbar-container">
                     <ul className={click ? 'nav-menu active' :'nav-menu'} onClick={handleClick}>
                         <li>
-                            <Link to ="/list">My List</Link>
+                            {/* <Link to ="/list">My List</Link> */}
                         </li>
                     </ul>
                     <div className='hamburger' onClick={handleClick}>

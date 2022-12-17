@@ -4,6 +4,11 @@ import {Link} from "react-router-dom"
 import Axios from "axios";
 import '../styles/Home.css'
 import Iconimg from "../images/searchIcon.png"
+import { trackPromise } from 'react-promise-tracker';
+import { usePromiseTracker } from "react-promise-tracker";
+import {ThreeDots} from 'react-loader-spinner'
+
+
 
 export default function Home(props) {
     const [items, setItems] = useState([])
@@ -39,15 +44,37 @@ export default function Home(props) {
     inputSearchRef.current.value = ""
     }
     
-    useEffect(()=>{
+    const LoadingIndicator = props => {
+        const { promiseInProgress } = usePromiseTracker();
+    
+        return (
+          promiseInProgress && 
+          <div
+            style={{
+                width: "100%",
+                height: "100",
+                display: "flex",
+                justifyContent: "center",
+                 alignItems: "center"
+            }}
+            >
+                <ThreeDots />
+            </div>
+        )
+      }
 
-        Axios.get(`${apiURL}/getlist`)
-        .then((response)=>{
-        let output= response.data.rows
-        handleArray(output, "title")
-        // alert("got info")
-        return output
-    })
+    useEffect(()=>{
+        trackPromise(
+            Axios.get(`${apiURL}/getlist`)
+            .then((response)=>{
+            let output= response.data.rows
+            handleArray(output, "title")
+            // alert("got info")
+            return output
+        })
+        )
+
+        
     },[])
 
         function handleArray(input, property){
@@ -93,6 +120,7 @@ export default function Home(props) {
             }
 
 
+            <LoadingIndicator/>
 
             <div className='search-output'>
                     {nodupliateitems.map(item => (

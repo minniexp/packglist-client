@@ -76,6 +76,7 @@ export default function Home(props) {
 
         
     },[])
+    
 
         function handleArray(input, property){
         for (let i = 0; i < input.length; i++) {
@@ -127,7 +128,6 @@ export default function Home(props) {
                     <Link to="/list"><button className='search-output-tile' id={item} onClick={handleQuery}>{item}</button></Link>
                     ))}
                 </div>
-
 
         </div>
     )

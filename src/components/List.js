@@ -94,11 +94,11 @@ export default function List(props) {
                     ))}
                 </table>
             </div>
-            <br/>
-            <br/>
-            
+
+
 
             <div className="checklist-add">
+                <hr/>
                 <form>
                     <input type="text" name="username" className="checklist-add" ref={inputRef} onChange={handleNewTask} />
                     <button onClick={submitReview} type="submit">Submit</button>

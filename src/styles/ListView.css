@@ -6,11 +6,13 @@ li {
 .listcontent-container{
     display: flex;
     flex-direction: row;
+    width:100%;
+    height: 100%;
+    margin: 0px;
 }
 
 .mylist-container {
-    background-color: #F9FAFB;
-    height:860px;
+    /* background-color: #EDEDED; */
     width: 13%;
 
 }
@@ -18,14 +20,24 @@ li {
 .list-container{
     display: flex;
     flex-direction: row;
+    
 }
 
 .listName-header{
     /* border: 2px solid #219ebc; */
-    margin: 0px;
+    margin: 10px 10px;
     margin-left: 10px;
     padding: 10px;
     border-radius: 6px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.01em;
+    color: #5C5F62;
+    background: #EDEDED;
+    border-radius: 6px;
+
 }
 
 textarea{
@@ -56,13 +68,13 @@ textarea{
 
 @media screen and (max-width:1240px) {
     .listcontent-container{
-        display: block;
+        display: flex;
+        flex-direction: column;
     }
 
     .mylist-container{
-        display: block;
         width: 100%;
-        height: 40px;
+        max-height: 40px;
     }
     .new-list-container{
         display: block;
@@ -70,8 +82,8 @@ textarea{
     }
 
     .list-container{
-        margin-top: 30px;
         display: block;
+        margin-top: 50px;
 
     }
     .new-list-btn{

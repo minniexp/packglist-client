@@ -94,7 +94,7 @@ export default function ListView(props) {
                 <div className="list-container">
                     {nodupliatecategory.map(category => (<List listName={listName} category={category} handleDeleteCateogry={handleDeleteCateogry}/>))}
                     <div className="new-list-container">
-                        {newListClick ? <NewList listName={listName} newListCreated={newListCreated} handleNewListCreated={handleNewListCreated}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New List</button>}
+                        {newListClick ? <NewList listName={listName} newListCreated={newListCreated} handleNewListCreated={handleNewListCreated}></NewList>: <button className="new-list-btn" onClick={()=>setNewListClick(prev=>!prev)}>New Category</button>}
                     </div>
                     {/* <button onClick={handleDeleteCateogry}>delete</button> */}
                 </div>

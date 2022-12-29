@@ -104,8 +104,8 @@ export default function Change(props) {
                             <button className='select-list-form-btn' onClick={handleEditSelect}>Edit</button>
                         </div>
                         <div className='select-list-icons'>
-                            <SlTrash onClick={handleDeleteSelect} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)'}:{color: '#fff'} } />
-                            <MdOutlineCancel onClick={handleExit} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)', maxWidth: '70%'}:{color: '#fff'} } />
+                            <SlTrash onClick={handleDeleteSelect} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)'}:{color: '#5C5F62'} } />
+                            <MdOutlineCancel onClick={handleExit} size={22} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)', maxWidth: '70%'}:{color: '#5C5F62'} } />
                         </div>
                     </div>
                     :
@@ -114,7 +114,7 @@ export default function Change(props) {
 
                         <div className="options">
                             <th onClick={()=>setOptionsSelect(prev=>!prev)}>
-                                <SlOptionsVertical size={20} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)'}:{color: '#fff'} }/>
+                                <SlOptionsVertical size={20} style={selectComp==="title"?{color: 'rgba(65,88,98, 0.8)'}:{color: '#5C5F62'} }/>
                             </th>
                         </div>
                     </div>

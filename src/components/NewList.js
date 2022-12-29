@@ -28,7 +28,7 @@ export default function NewList(props) {
     return (
         <div className='todo-container'>
             
-                <div>
+                <div className="checklist-add">
                     <input 
                         type="text" 
                         name="newCategory" 
@@ -45,14 +45,15 @@ export default function NewList(props) {
                             <input className="checkbox" type="checkbox" id="completed"/>    
                         </div>
                     ))}
-                </div>
-            <br/>
-            <br/>
-            
+                </div>            
          
             <div className="checklist-add">
-                <input type="text" name="username" className="checklist-add" ref={inputRef} onChange={handleNewTask} />
-                <button onClick={submitReview}>Submit</button>
+                <hr/>
+                <form>
+                    <input type="text" name="username" className="checklist-add" ref={inputRef} onChange={handleNewTask} />
+                    <button onClick={submitReview}>Submit</button>
+                </form>
+
 
             </div>
 

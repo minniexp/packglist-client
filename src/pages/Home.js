@@ -58,7 +58,7 @@ export default function Home(props) {
                  alignItems: "center"
             }}
             >
-                <ThreeDots />
+                <ThreeDots color="#6F47EB"/>
             </div>
         )
       }
@@ -100,6 +100,11 @@ export default function Home(props) {
 
     return (
         <div className='Home'>
+            <div className="introduction">
+                <p>Find your ulimate packing list</p>
+                <h1>For any occasion, trip, and more</h1>
+                <p>Click on the desired list or create your own</p>
+            </div>
             <div className='search-bar'>
                 <img src={Iconimg} className='search-bar-icon' />
                 <input onSubmit = {onSearch}

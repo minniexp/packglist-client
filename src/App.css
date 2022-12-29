@@ -1,0 +1,15 @@
+.App {
+    margin: 0px;
+    padding: 0px;
+
+}
+
+footer{
+    background: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+    margin:0px;
+}

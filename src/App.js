@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Navbar from "./components/Navbar";
 // import Axios from "axios";
 import ListView from './pages/ListView';
+import { SocialIcon } from "react-social-icons";
 
 
 function App() {
@@ -82,30 +83,20 @@ function App() {
               element=
                 {<ListView 
                   listTitle={query}/>
-                } />
+                } 
+            />
       </Routes>
-      {/* Serach Bar */}
-      {/* Search: 
-      <input onSubmit = {onSearch}
-        type="search"
-        // name="query"
-        ref={inputSearchRef}
-        onChange={e => setQuery(e.target.value)}
-        // placeholder="Search List Name"
-      />
-
-      <br/>
-      <br/>
-
-      <form onSubmit = {onSubmit}>
-          New Item: <input ref={inputRef} type="text" />
-          {query && <button type="submit">Add</button>}
-      </form>
-
-
-      {nodupliateitems.map(item => (
-      <Link to="/list"><button id={item} onClick={handleQuery}>{item}</button></Link>
-      ))} */}
+      <hr/>
+      <footer>
+        <p>Created by: Min Yang</p>
+        <SocialIcon
+          url="https://github.com/minniexp"
+          bgColor="transparent"
+          fgColor="black"
+          target="_blank"
+          rel="noreferrer noopener"
+        />
+      </footer>
 
 
     </div>

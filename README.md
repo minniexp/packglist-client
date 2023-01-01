@@ -19,7 +19,7 @@ This website is to create and share personal packing list for different events, 
 
 2. Add, edit, or delete category and items
 
-3. Click on the select itme to toggle checkmark.
+3. Click on the select item to toggle checkmark.
 
 ### Technology
 
@@ -36,10 +36,18 @@ This App uses React v18.0. Node, Express, and PostgresQL.
 To run this project, install it locally using npm:
 
 ```
-$ cd ../breakeven
+$ cd ../breakeven-client
 $ npm install
 $ npm start
 ```
+
+```
+$ cd ../breakeven-server
+$ npm install express pg cors
+$ npm install nodemon -D
+$ npm run dev
+```
+
 
 ### Acknowledgments:
 

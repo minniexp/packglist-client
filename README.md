@@ -16,11 +16,11 @@ This website is to create and share personal packing list for different events, 
 
 2. Add, edit, or delete category and items
 
-3. Checkmark
+3. Click on the select itme to toggle checkmark.
 
 ### Technology
 
-This App uses React v18.0, Node, Express, and PostgresQL.
+This App uses React v18.0. Node, Express, and PostgresQL.
 
 ### Possible Improvements:
 

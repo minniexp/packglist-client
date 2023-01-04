@@ -98,6 +98,7 @@ export default function ListView(props) {
                     </div>
                     {/* <button onClick={handleDeleteCateogry}>delete</button> */}
                 </div>
+
             </div>  
             : 
             <div>

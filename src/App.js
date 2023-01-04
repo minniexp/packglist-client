@@ -86,7 +86,6 @@ function App() {
                 } 
             />
       </Routes>
-      <hr/>
       <footer>
         <p>Created by: Min Yang</p>
         <SocialIcon

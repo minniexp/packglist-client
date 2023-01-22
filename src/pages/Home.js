@@ -64,11 +64,16 @@ export default function Home(props) {
   };
 
   useEffect(() => {
+    console.log("getting all lists");
+
     trackPromise(
       Axios.get(`${apiURL}/getlist`).then((response) => {
+        if (!response) {
+          console.log("response is empty");
+          return;
+        }
         let output = response.data.rows;
         handleArray(output, "title");
-        console.log("getting all lists");
         // alert("got info")
         return output;
       })

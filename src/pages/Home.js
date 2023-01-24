@@ -67,7 +67,7 @@ export default function Home(props) {
     console.log("getting all lists");
 
     trackPromise(
-      Axios.get(`${apiURL}/getlist`).then((response) => {
+      Axios.get(`${apiURL}/getAllLists`).then((response) => {
         if (!response) {
           console.log("response is empty");
           return;

@@ -52,16 +52,14 @@ export default function NewList(props) {
 
       <div className="checklist-add">
         <hr />
-        <form>
-          <input
-            type="text"
-            name="username"
-            className="checklist-add"
-            ref={inputRef}
-            onChange={handleNewTask}
-          />
-          <button onClick={submitReview}>Submit</button>
-        </form>
+        <input
+          type="text"
+          name="item"
+          className="checklist-add"
+          ref={inputRef}
+          onChange={handleNewTask}
+        />
+        <button onClick={submitReview}>Add</button>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import List from "../components/List";
 import NewList from "../components/NewList";
 import Change from "../components/Change";
 import Axios from "axios";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import "../styles/ListView.css";
 
@@ -12,11 +12,12 @@ export default function ListView(props) {
   const [newListClick, setNewListClick] = useState(false);
   const [newListCreated, setNewListCreated] = useState(false);
   const [deleteCateogryClick, setDeleteCateogryClick] = useState(false);
+  const [title, setTitle] = useState("");
   // const [currentList, setCurrentList] = useState(()=>{
   //     return window.localStorage.getItem('listClicked') || []
   // })
   // const [currentList, setCurrentList] = useState(props.listTitle)
-
+  const location = useLocation();
   let listName = props.listTitle;
   const apiURL = process.env.REACT_APP_API_URL;
 
@@ -46,12 +47,17 @@ export default function ListView(props) {
   useEffect(() => {
     // setCurrentList(props.listTitle)
     setCategories([]);
-    Axios.get(`${apiURL}/getlist`).then((response) => {
-      let output = response.data.rows;
-      handleArray(output, "category", "title", listName);
-      setNewListClick(false);
-      return output;
-    });
+    Axios.get(`${apiURL}/api/v1/finalcheck/getlist${location.pathname}`)
+      .then((response) => {
+        setTitle(response.data.rows[0].title);
+        listName = response.data.rows[0].title;
+        console.log("listname", response.data.rows[0].title);
+        let output = response.data.rows;
+        handleArray(output, "category", "title", listName);
+        setNewListClick(false);
+        return output;
+      })
+      .catch((error) => console.log(error));
   }, [newListCreated, deleteCateogryClick]);
 
   // useEffect(()=>{
@@ -78,13 +84,15 @@ export default function ListView(props) {
   //     window.localStorage.setItem('listClicked', currentList)
   // },[currentList])
 
-  return listName ? (
+  return (
     <div className="listcontent-container">
       <div className="mylist-container">
         <h2 className="listName-header">
-          {" "}
+          {/* {listName} */}
           <Change select="title" description={listName} />
         </h2>
+        <h2> listName is {listName}</h2>
+        <h2> tite is {title}</h2>
         {/* <li>List1</li>
                     <li>List2</li> */}
       </div>
@@ -94,6 +102,7 @@ export default function ListView(props) {
             listName={listName}
             category={category}
             handleDeleteCateogry={handleDeleteCateogry}
+            location={location}
           />
         ))}
         <div className="new-list-container">
@@ -102,6 +111,7 @@ export default function ListView(props) {
               listName={listName}
               newListCreated={newListCreated}
               handleNewListCreated={handleNewListCreated}
+              location={location}
             ></NewList>
           ) : (
             <button
@@ -115,11 +125,13 @@ export default function ListView(props) {
         {/* <button onClick={handleDeleteCateogry}>delete</button> */}
       </div>
     </div>
-  ) : (
-    <div>
-      <Link to="/">
-        <p className="link-homepage">Go back to Homepage</p>
-      </Link>
-    </div>
   );
 }
+
+// : (
+//   <div>
+//     <Link to="/">
+//       <p className="link-homepage">Go back to Homepage</p>
+//     </Link>
+//   </div>
+// );

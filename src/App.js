@@ -1,20 +1,17 @@
-import React, { useState, useRef } from "react";
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import React, { useState, useRef, useEffect } from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 // import Axios from "axios";
-import ListView from './pages/ListView';
+import ListView from "./pages/ListView";
 import { SocialIcon } from "react-social-icons";
-
 
 function App() {
   // const [items, setItems] = useState([])
-  const [query, setQuery] = useState("")
-  const inputRef = useRef()
-  const inputSearchRef = useRef()
-
-
+  const [query, setQuery] = useState("");
+  const inputRef = useRef();
+  const inputSearchRef = useRef();
 
   // const filteredItems = items.filter(item => {
   // return item.toLowerCase().includes(query.toLowerCase())
@@ -38,7 +35,7 @@ function App() {
   // if (valueInputSearch === "") return
   // inputSearchRef.current.value = ""
   // }
-  
+
   // useEffect(()=>{
 
   //   Axios.get('http://localhost:4000/getlist')
@@ -60,31 +57,30 @@ function App() {
   //   setQuery(e.currentTarget.id)
   // }
 
-  function refresh(){
-    inputSearchRef.current.value = ""
-    inputRef.current.value = ""
-    setQuery("")
+  function refresh() {
+    inputSearchRef.current.value = "";
+    inputRef.current.value = "";
+    setQuery("");
   }
 
   return (
     <div className="App">
-      <Navbar refresh={refresh}/>
+      <Navbar refresh={refresh} />
       <Routes>
-            <Route 
-              path='/' 
-              element=
-                {<Home 
-                  inputSearchRef={inputSearchRef}
-                  inputRef={inputRef}
-                  listTitle={input => setQuery(input)}/>}
+        <Route
+          path="/"
+          element={
+            <Home
+              inputSearchRef={inputSearchRef}
+              inputRef={inputRef}
+              listTitle={(input) => setQuery(input)}
             />
-            <Route 
-              path='/list' 
-              element=
-                {<ListView 
-                  listTitle={query}/>
-                } 
-            />
+          }
+        />
+        <Route
+          path="/list/:listName"
+          element={<ListView listTitle={query} />}
+        />
       </Routes>
       <footer>
         <p>Created by: Min Yang</p>
@@ -96,14 +92,11 @@ function App() {
           rel="noreferrer noopener"
         />
       </footer>
-
-
     </div>
   );
 }
 
 export default App;
-
 
 /* FOR LATER 
 
@@ -186,5 +179,3 @@ export default App;
     )}
   )
 */
-
-

@@ -10,6 +10,7 @@ import { ThreeDots } from "react-loader-spinner";
 
 export default function Home(props) {
   const [items, setItems] = useState([]);
+  const [dataResponse, setDataReponse] = useState([]);
   const [query, setQuery] = useState("");
   const [newListClick, setNewListClick] = useState(false);
 
@@ -74,6 +75,7 @@ export default function Home(props) {
         }
         let output = response.data.rows;
         handleArray(output, "title");
+        setDataReponse(output);
         // alert("got info")
         return output;
       })
@@ -85,6 +87,15 @@ export default function Home(props) {
       setItems((oldArray) => [...oldArray, input[i][property]]);
     }
   }
+
+  // function handleObjectArray(input, propertyOne, propertyTwo) {
+  //   for (let i = 0; i < input.length; i++) {
+  //     setDataReponse((oldObject) => [
+  //       ...oldObject,
+  //       { id: input[i][propertyOne], title: propertyTwo },
+  //     ]);
+  //   }
+  // }
 
   function handleQuery(e) {
     props.listTitle(e.currentTarget.id);
@@ -140,17 +151,34 @@ export default function Home(props) {
       <LoadingIndicator />
 
       <div className="search-output">
-        {nodupliateitems.map((item) => (
-          <Link to="/list">
-            <button
-              className="search-output-tile"
-              id={item}
-              onClick={handleQuery}
-            >
-              {item}
-            </button>
-          </Link>
-        ))}
+        {dataResponse.map((item) => {
+          let urlString = `list/${item.id}`;
+          return (
+            <Link to={urlString}>
+              <button
+                className="search-output-tile"
+                id={item.title}
+                onClick={handleQuery}
+              >
+                {item.title}
+              </button>
+            </Link>
+          );
+        })}
+        {/* {nodupliateitems.map((item) => {
+          let urlString = `/list/${item}`;
+          return (
+            <Link to={urlString}>
+              <button
+                className="search-output-tile"
+                id={item}
+                onClick={handleQuery}
+              >
+                {item}
+              </button>
+            </Link>
+          );
+        })} */}
       </div>
     </div>
   );

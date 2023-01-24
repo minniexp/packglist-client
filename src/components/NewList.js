@@ -4,7 +4,7 @@ import Axios from "axios";
 import "../styles/List.css";
 
 export default function NewList(props) {
-  const listName = props.listName;
+  let listName = props.listName;
   const [tasks, setTasks] = useState([]);
   const [newItem, setNewItem] = useState("");
   const [newCategory, setNewCategory] = useState("");
@@ -17,7 +17,7 @@ export default function NewList(props) {
   }
 
   const submitReview = () => {
-    Axios.post(`${apiURL}/additem`, {
+    Axios.post(`${apiURL}/api/v1/finalcheck/additem`, {
       title: listName,
       category: newCategory,
       item: newItem,

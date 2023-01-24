@@ -30,7 +30,7 @@ export default function Change(props) {
   const handleDeleteSelect = () => {
     console.log("handling");
     if (selectComp === "category") {
-      Axios.post(`${apiURL}/deletecategory`, {
+      Axios.post(`${apiURL}/api/v1/finalcheck/deletecategory`, {
         category: descriptionComp,
         title: titleComp,
       }).then(() => {
@@ -38,12 +38,12 @@ export default function Change(props) {
         props.handleDeleteCateogry();
       });
     } else if (selectComp === "title") {
-      Axios.post(`${apiURL}/deletelist`, { title: descriptionComp }).then(
-        () => {
-          console.log(`successfuly deleted ${selectComp}`);
-          props.handleDeleteCateogry();
-        }
-      );
+      Axios.post(`${apiURL}/api/v1/finalcheck/deletelist`, {
+        title: descriptionComp,
+      }).then(() => {
+        console.log(`successfuly deleted ${selectComp}`);
+        props.handleDeleteCateogry();
+      });
     }
     setDeleteSelect(true);
     setOptionsSelect((prev) => !prev);
@@ -68,26 +68,30 @@ export default function Change(props) {
 
   function handleEditSelect() {
     if (selectComp === "category") {
-      Axios.post(`${apiURL}/editcategory`, {
+      Axios.post(`${apiURL}/api/v1/finalcheck/editcategory`, {
         category: newSelect,
         prevcategory: descriptionComp,
         title: titleComp,
-      }).then(() => {
-        console.log(`successfuly deleted ${selectComp}`);
-        inputRef.current.value = "";
-        setOptionsSelect((prev) => !prev);
-        setCurrentSelect(newSelect);
-      });
+      })
+        .then(() => {
+          console.log(`successfuly deleted ${selectComp}`);
+          inputRef.current.value = "";
+          setOptionsSelect((prev) => !prev);
+          setCurrentSelect(newSelect);
+        })
+        .catch((error) => console.log(error));
     } else if (selectComp === "title") {
-      Axios.post(`${apiURL}/edittitle`, {
+      Axios.post(`${apiURL}/api/v1/finalcheck/edittitle`, {
         title: newSelect,
         prevtitle: descriptionComp,
-      }).then(() => {
-        console.log(`successfuly deleted ${selectComp}`);
-        inputRef.current.value = "";
-        setOptionsSelect((prev) => !prev);
-        setCurrentSelect(newSelect);
-      });
+      })
+        .then(() => {
+          console.log(`successfuly deleted ${selectComp}`);
+          inputRef.current.value = "";
+          setOptionsSelect((prev) => !prev);
+          setCurrentSelect(newSelect);
+        })
+        .catch((error) => console.log(error));
     }
   }
 

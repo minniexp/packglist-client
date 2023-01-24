@@ -17,20 +17,25 @@ export default function EditList(props) {
   const apiURL = process.env.REACT_APP_API_URL;
 
   const editItem = () => {
-    Axios.post(`${apiURL}/edititem`, { id: editId, item: edittask }).then(
-      () => {
+    Axios.post(`${apiURL}/api/v1/finalcheck/edititem`, {
+      id: editId,
+      item: edittask,
+    })
+      .then(() => {
         console.log("successful edit");
-      }
-    );
+      })
+      .catch((error) => console.log(error));
     setCurrentTask(edittask);
     inputRef.current.value = "";
     setOptionsClick((prev) => !prev);
   };
 
   const deleteItem = () => {
-    Axios.post(`${apiURL}/deleteitem`, { id: editId }).then(() => {
-      console.log("successfuly deleted item");
-    });
+    Axios.post(`${apiURL}/api/v1/finalcheck/deleteitem`, { id: editId })
+      .then(() => {
+        console.log("successfuly deleted item");
+      })
+      .catch((error) => console.log(error));
     setDeleteTask(true);
     inputRef.current.value = "";
     setOptionsClick((prev) => !prev);

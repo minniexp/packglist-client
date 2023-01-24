@@ -9,8 +9,9 @@ import Axios from "axios";
 import "../styles/List.css";
 
 export default function List(props) {
-  const listName = props.listName;
+  let listName = props.listName;
   const category = props.category;
+  const location = props.location;
   const [taskObjects, settaskObjects] = useState([]);
   const [newTaskClick, setNewTaskClick] = useState(false);
 
@@ -41,35 +42,45 @@ export default function List(props) {
         }
       }
     }
+    console.log(taskObjects);
   }
 
   useEffect(() => {
     settaskObjects([]);
-    Axios.get(`${apiURL}/getlist`).then((response) => {
-      let output = response.data.rows;
-      handleObjectArray(
-        output,
-        "item",
-        "title",
-        listName,
-        "category",
-        category
-      );
-      return output;
-    });
+    Axios.get(`${apiURL}/api/v1/finalcheck/getlist${location.pathname}`)
+      .then((response) => {
+        listName = response.data.rows[0].title;
+        console.log("listname", response.data.rows[0].title);
+        let output = response.data.rows;
+
+        handleObjectArray(
+          output,
+          "item",
+          "title",
+          listName,
+          "category",
+          category
+        ).catch((error) => console.log(error));
+
+        console.log(taskObjects);
+        return output;
+      })
+      .catch((error) => console.log(error));
   }, [newTaskClick]);
 
   const submitReview = (e) => {
     e.preventDefault();
 
-    Axios.post(`${apiURL}/additem`, {
+    Axios.post(`${apiURL}/api/v1/finalcheck/additem`, {
       title: listName,
       category: category,
       item: newItem,
-    }).then(() => {
-      console.log("successful insert");
-      setNewTaskClick((prev) => !prev);
-    });
+    })
+      .then(() => {
+        console.log("successful insert");
+        setNewTaskClick((prev) => !prev);
+      })
+      .catch((error) => console.log(error));
     inputRef.current.value = "";
   };
 

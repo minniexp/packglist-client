@@ -13,11 +13,14 @@ export default function ListView(props) {
   const [newListCreated, setNewListCreated] = useState(false);
   const [deleteCateogryClick, setDeleteCateogryClick] = useState(false);
   const [title, setTitle] = useState("");
+  const [test, setTest] = useState("");
+
   // const [currentList, setCurrentList] = useState(()=>{
   //     return window.localStorage.getItem('listClicked') || []
   // })
   // const [currentList, setCurrentList] = useState(props.listTitle)
   const location = useLocation();
+  // let listName = props.listTitle;
   let listName = props.listTitle;
   const apiURL = process.env.REACT_APP_API_URL;
 
@@ -47,10 +50,13 @@ export default function ListView(props) {
   useEffect(() => {
     // setCurrentList(props.listTitle)
     setCategories([]);
+    let i = 0;
+    i++;
     Axios.get(`${apiURL}/api/v1/finalcheck/getlist${location.pathname}`)
       .then((response) => {
         setTitle(response.data.rows[0].title);
         listName = response.data.rows[0].title;
+        setTest(response.data.rows[0].title);
         console.log("listname", response.data.rows[0].title);
         let output = response.data.rows;
         handleArray(output, "category", "title", listName);
@@ -88,18 +94,15 @@ export default function ListView(props) {
     <div className="listcontent-container">
       <div className="mylist-container">
         <h2 className="listName-header">
-          {/* {listName} */}
-          <Change select="title" description={listName} />
+          <Change select="title" description={test} test={test} />
         </h2>
-        <h2> listName is {listName}</h2>
-        <h2> tite is {title}</h2>
         {/* <li>List1</li>
                     <li>List2</li> */}
       </div>
       <div className="list-container">
         {nodupliatecategory.map((category) => (
           <List
-            listName={listName}
+            listName={title}
             category={category}
             handleDeleteCateogry={handleDeleteCateogry}
             location={location}
@@ -108,7 +111,7 @@ export default function ListView(props) {
         <div className="new-list-container">
           {newListClick ? (
             <NewList
-              listName={listName}
+              listName={title}
               newListCreated={newListCreated}
               handleNewListCreated={handleNewListCreated}
               location={location}

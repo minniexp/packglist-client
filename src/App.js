@@ -65,23 +65,28 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar refresh={refresh} />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              inputSearchRef={inputSearchRef}
-              inputRef={inputRef}
-              listTitle={(input) => setQuery(input)}
-            />
-          }
-        />
-        <Route
-          path="/list/:listName"
-          element={<ListView listTitle={query} />}
-        />
-      </Routes>
+      <div>
+        <Navbar refresh={refresh} />
+      </div>
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                inputSearchRef={inputSearchRef}
+                inputRef={inputRef}
+                listTitle={(input) => setQuery(input)}
+              />
+            }
+          />
+          <Route
+            path="/list/:listName"
+            element={<ListView listTitle={query} />}
+          />
+        </Routes>
+      </main>
+
       <footer>
         <p>Created by: Min Yang</p>
         <SocialIcon

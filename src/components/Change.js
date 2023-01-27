@@ -10,6 +10,7 @@ export default function Change(props) {
   let selectComp = props.select;
   let descriptionComp = props.description;
   let titleComp = props.title;
+  let test = props.test;
 
   const [deleteSelect, setDeleteSelect] = useState(false);
   const [optionsSelect, setOptionsSelect] = useState(false);
@@ -111,12 +112,15 @@ export default function Change(props) {
               className="select-list-form-input"
               ref={inputRef}
               type="text"
-              placeholder={descriptionComp}
+              // placeholder={descriptionComp}
+              placeholder="testing"
               onChange={(e) => setNewSelect(e.target.value)}
               style={
                 selectComp === "title" ? { height: "40px" } : { height: "20px" }
               }
-            />
+            >
+              {descriptionComp}
+            </textarea>
             <button className="select-list-form-btn" onClick={handleEditSelect}>
               Edit
             </button>
@@ -144,8 +148,8 @@ export default function Change(props) {
         </div>
       ) : (
         <div className="select-total-container">
-          {currentSelect}
-
+          {console.log("current select is", currentSelect)}
+          {selectComp === "title" ? test : currentSelect}
           <div className="options">
             <th onClick={() => setOptionsSelect((prev) => !prev)}>
               <SlOptionsVertical

@@ -14,6 +14,7 @@ export default function List(props) {
   const location = props.location;
   const [taskObjects, settaskObjects] = useState([]);
   const [newTaskClick, setNewTaskClick] = useState(false);
+  const [title, setTitle] = useState("");
 
   const [newItem, setNewItem] = useState("");
   const apiURL = process.env.REACT_APP_API_URL;
@@ -50,6 +51,7 @@ export default function List(props) {
     Axios.get(`${apiURL}/api/v1/finalcheck/getlist${location.pathname}`)
       .then((response) => {
         listName = response.data.rows[0].title;
+        setTitle(response.data.rows[0].title);
         console.log("listname", response.data.rows[0].title);
         let output = response.data.rows;
 
@@ -100,7 +102,7 @@ export default function List(props) {
         <Change
           select="category"
           description={category}
-          title={listName}
+          title={title}
           handleDeleteCateogry={props.handleDeleteCateogry}
         />
       </p>

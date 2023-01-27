@@ -65,7 +65,9 @@ export default function EditList(props) {
                 type="text"
                 placeholder={props.task}
                 onChange={(e) => setEditTask(e.target.value)}
-              />
+              >
+                {currentTask}
+              </input>
               <button className="edit-list-form-btn" onClick={editItem}>
                 Edit
               </button>

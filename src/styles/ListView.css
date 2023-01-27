@@ -25,6 +25,8 @@ li {
 
 .listName-header{
     /* border: 2px solid #219ebc; */
+    display:flex;
+    justify-content: space-between;
     margin: 10px 10px;
     margin-left: 10px;
     padding: 10px;
@@ -37,11 +39,8 @@ li {
     color: #5C5F62;
     background: #EDEDED;
     border-radius: 6px;
-
-}
-
-textarea{
-    resize: none;
+    width: 170px;
+    height: 65px;
 }
 
 .link-homepage{

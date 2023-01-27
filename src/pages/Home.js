@@ -165,7 +165,9 @@ export default function Home(props) {
             </Link>
           );
         })}
-        {/* {nodupliateitems.map((item) => {
+      </div>
+
+      {/* {nodupliateitems.map((item) => {
           let urlString = `/list/${item}`;
           return (
             <Link to={urlString}>
@@ -179,7 +181,6 @@ export default function Home(props) {
             </Link>
           );
         })} */}
-      </div>
     </div>
   );
 }

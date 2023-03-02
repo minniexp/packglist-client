@@ -161,10 +161,14 @@ p {
 .select-list-container{
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 .select-list-form{
     display:flex;
-    gap: 5px;
+    gap: 2px;
+    width:100%;
+    justify-content: space-between;
+
 }
 .select-list-form-input{
     background: #FFFFFF;

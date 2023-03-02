@@ -105,7 +105,7 @@ export default function Change(props) {
           <div
             className="select-list-form"
             style={
-              selectComp === "title" ? { maxWidth: "60%" } : { maxWidth: "70%" }
+              selectComp === "title" ? { maxWidth: "70%" } : { maxWidth: "70%" }
             }
           >
             <textarea

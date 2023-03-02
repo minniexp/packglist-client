@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 import Axios from "axios";
 import "../styles/Home.css";
@@ -7,6 +7,7 @@ import Iconimg from "../images/searchIcon.png";
 import { trackPromise } from "react-promise-tracker";
 import { usePromiseTracker } from "react-promise-tracker";
 import { ThreeDots } from "react-loader-spinner";
+import NewList from "../components/NewList";
 
 export default function Home(props) {
   const [items, setItems] = useState([]);
@@ -18,11 +19,23 @@ export default function Home(props) {
   const inputSearchRef = props.inputSearchRef;
   const apiURL = process.env.REACT_APP_API_URL;
 
-  const filteredItems = items.filter((item) => {
-    return item.toLowerCase().includes(query.toLowerCase());
-  });
+  // const filteredItems = items.filter((item) => {
+  //   return item.toLowerCase().includes(query.toLowerCase());
+  // });
 
-  const nodupliateitems = [...new Set(filteredItems)];
+  // const nodupliateitems = [...new Set(filteredItems)];
+  const createList = (listName) => {
+    Axios.post(`${apiURL}/api/v1/finalcheck/createList`, {
+      title: listName
+    }).then((res) => {
+      console.log("successfuly created list");
+      let newListID = res.data.rows[0].id
+      let urlString = `/list/${newListID}`;
+      console.log(urlString)
+      // add redirect to the urlString
+    });
+
+  };
 
   function onSubmit(e) {
     e.preventDefault();
@@ -30,6 +43,8 @@ export default function Home(props) {
 
     const valueInputList = inputRef.current.value;
     if (valueInputList === "") return;
+    console.log("passed return")
+    createList(valueInputList)
     setItems((prev) => [...prev, valueInputList]);
     inputRef.current.value = "";
     toggleCreateList();
@@ -74,13 +89,13 @@ export default function Home(props) {
           return;
         }
         let output = response.data.rows;
-        handleArray(output, "title");
+        // handleArray(output, "title");
         setDataReponse(output);
         // alert("got info")
         return output;
       })
     );
-  }, []);
+  }, [items, apiURL]);
 
   function handleArray(input, property) {
     for (let i = 0; i < input.length; i++) {
@@ -166,6 +181,8 @@ export default function Home(props) {
           );
         })}
       </div>
+      {items.map(item => console.log("item is",item))}
+
 
       {/* {nodupliateitems.map((item) => {
           let urlString = `/list/${item}`;

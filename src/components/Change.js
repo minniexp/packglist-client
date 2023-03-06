@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { SlOptionsVertical, SlTrash } from "react-icons/sl";
 import { MdOutlineCancel } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+
 // import { confirmAlert } from 'react-confirm-alert'
 import Axios from "axios";
 
@@ -11,6 +13,7 @@ export default function Change(props) {
   let descriptionComp = props.description;
   let titleComp = props.title;
   let test = props.test;
+  let navigate = useNavigate();
 
   const [deleteSelect, setDeleteSelect] = useState(false);
   const [optionsSelect, setOptionsSelect] = useState(false);
@@ -37,17 +40,25 @@ export default function Change(props) {
       }).then(() => {
         console.log(`successfuly deleted ${selectComp}`);
         props.handleDeleteCateogry();
+        setDeleteSelect(true);
+        setOptionsSelect((prev) => !prev);
       });
     } else if (selectComp === "title") {
       Axios.post(`${apiURL}/api/v1/finalcheck/deletelist`, {
         title: descriptionComp,
-      }).then(() => {
+      }).then((item) => {
+        console.log("item is ", item.status)
+        if (item.status === 200) {
+
+        }
         console.log(`successfuly deleted ${selectComp}`);
-        props.handleDeleteCateogry();
+        // props.handleDeleteCateogry();
+        setDeleteSelect(true);
+        setOptionsSelect((prev) => !prev);
+        navigate("/")
       });
     }
-    setDeleteSelect(true);
-    setOptionsSelect((prev) => !prev);
+
   };
 
   // function handleDeleteSelect() {

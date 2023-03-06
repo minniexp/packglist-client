@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Axios from "axios";
 import "../styles/Home.css";
@@ -10,6 +10,7 @@ import { ThreeDots } from "react-loader-spinner";
 import NewList from "../components/NewList";
 
 export default function Home(props) {
+  let navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [dataResponse, setDataReponse] = useState([]);
   const [query, setQuery] = useState("");
@@ -33,6 +34,7 @@ export default function Home(props) {
       let urlString = `/list/${newListID}`;
       console.log(urlString)
       // add redirect to the urlString
+      navigate(urlString)
     });
 
   };
@@ -43,11 +45,11 @@ export default function Home(props) {
 
     const valueInputList = inputRef.current.value;
     if (valueInputList === "") return;
-    console.log("passed return")
     createList(valueInputList)
     setItems((prev) => [...prev, valueInputList]);
     inputRef.current.value = "";
     toggleCreateList();
+
   }
 
   function onSearch(e) {

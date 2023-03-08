@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
-import { Routes, Route, redirect } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 // import Axios from "axios";
@@ -84,7 +84,6 @@ function App() {
             path="/list/:listName"
             element={<ListView listTitle={query} />}            
           />
-          <redirect to ="/"/>
         </Routes>
       </main>
       <footer>

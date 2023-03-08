@@ -82,7 +82,7 @@ function App() {
           />
           <Route
             path="/list/:listName"
-            element={<ListView listTitle={query} />}
+            element={<ListView listTitle={query} />}            
           />
         </Routes>
       </main>

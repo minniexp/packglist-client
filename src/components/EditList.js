@@ -7,12 +7,13 @@ import "../styles/List.css";
 
 export default function EditList(props) {
   let editId = props.id;
+  let task = props.task
   const [optionsClick, setOptionsClick] = useState(false);
   const [deleteTask, setDeleteTask] = useState(false);
 
-  const [currentTask, setCurrentTask] = useState(props.task);
+  const [currentTask, setCurrentTask] = useState(task);
 
-  const [edittask, setEditTask] = useState(props.task);
+  const [edittask, setEditTask] = useState(task);
   const inputRef = useRef();
   const apiURL = process.env.REACT_APP_API_URL;
 
@@ -65,9 +66,8 @@ export default function EditList(props) {
                 type="text"
                 placeholder={props.task}
                 onChange={(e) => setEditTask(e.target.value)}
-              >
-                {currentTask}
-              </input>
+                value={edittask}
+              />              
               <button className="edit-list-form-btn" onClick={editItem}>
                 Edit
               </button>

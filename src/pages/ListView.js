@@ -101,12 +101,13 @@ export default function ListView(props) {
       </div>
       <div className="list-container">
         {nodupliatecategory.map((category) => (
-          <List
+          category ? <List
             listName={title}
             category={category}
             handleDeleteCateogry={handleDeleteCateogry}
             location={location}
           />
+          : ""
         ))}
         <div className="new-list-container">
           {newListClick ? (
@@ -114,7 +115,7 @@ export default function ListView(props) {
               listName={title}
               newListCreated={newListCreated}
               handleNewListCreated={handleNewListCreated}
-              location={location}
+              // location={location}
             ></NewList>
           ) : (
             <button

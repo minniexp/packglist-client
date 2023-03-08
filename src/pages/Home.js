@@ -31,9 +31,8 @@ export default function Home(props) {
     }).then((res) => {
       console.log("successfuly created list");
       let newListID = res.data.rows[0].id
-      let urlString = `/list/${newListID}`;
-      console.log(urlString)
-      // add redirect to the urlString
+      let urlString = `/list/${newListID}`
+      console.log("urlStringNow is ", urlString)
       navigate(urlString)
     });
 

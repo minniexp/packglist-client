@@ -14,6 +14,7 @@ export default function List(props) {
   const location = props.location;
   const [taskObjects, settaskObjects] = useState([]);
   const [newTaskClick, setNewTaskClick] = useState(false);
+  const [newEditClick, setNewEditClick] = useState(false);
   const [title, setTitle] = useState("");
 
   const [newItem, setNewItem] = useState("");
@@ -23,6 +24,10 @@ export default function List(props) {
 
   function handleNewTask(e) {
     setNewItem(e.target.value);
+  }
+
+  const handleEditClick = () => {
+    setNewEditClick(prev => !prev)
   }
 
   function handleObjectArray(
@@ -62,13 +67,13 @@ export default function List(props) {
           listName,
           "category",
           category
-        ).catch((error) => console.log(error));
+        )
 
-        console.log(taskObjects);
+        console.log("taskObjects", taskObjects);
         return output;
       })
       .catch((error) => console.log(error));
-  }, [newTaskClick]);
+  }, [newTaskClick, newEditClick]);
 
   const submitReview = (e) => {
     e.preventDefault();
@@ -104,6 +109,7 @@ export default function List(props) {
           description={category}
           title={title}
           handleDeleteCateogry={props.handleDeleteCateogry}
+          handleEditClick={handleEditClick}
         />
       </p>
       <div className="checklist-total">

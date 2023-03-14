@@ -90,9 +90,7 @@ export default function Home(props) {
           return;
         }
         let output = response.data.rows;
-        // handleArray(output, "title");
         setDataReponse(output);
-        // alert("got info")
         return output;
       })
     );

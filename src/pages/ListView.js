@@ -9,6 +9,7 @@ import "../styles/ListView.css";
 
 export default function ListView(props) {
   const [categories, setCategories] = useState([]);
+  const [changeClick, setChangeClick] = useState(false);
   const [newListClick, setNewListClick] = useState(false);
   const [newListCreated, setNewListCreated] = useState(false);
   const [deleteCateogryClick, setDeleteCateogryClick] = useState(false);
@@ -47,6 +48,10 @@ export default function ListView(props) {
     setDeleteCateogryClick((prev) => !prev);
   };
 
+  const handleChangeClick = () => {
+    setChangeClick(prev => !prev)
+  }
+
   useEffect(() => {
     // setCurrentList(props.listTitle)
     setCategories([]);
@@ -64,7 +69,7 @@ export default function ListView(props) {
         return output;
       })
       .catch((error) => console.log(error));
-  }, [newListCreated, deleteCateogryClick]);
+  }, [newListCreated, deleteCateogryClick, changeClick]);
 
   // useEffect(()=>{
   //     window.localStorage.setItem('listClicked', JSON.stringify(listName))
@@ -94,7 +99,7 @@ export default function ListView(props) {
     <div className="listcontent-container">
       <div className="mylist-container">
         <h2 className="listName-header">
-          <Change select="title" description={test} test={test} />
+          <Change select="title" description={listName} test={test} changeClick={changeClick} handleChangeClick={handleChangeClick}/>
         </h2>
         {/* <li>List1</li>
                     <li>List2</li> */}

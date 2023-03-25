@@ -20,11 +20,8 @@ export default function Home(props) {
   const inputSearchRef = props.inputSearchRef;
   const apiURL = process.env.REACT_APP_API_URL;
 
-  // const filteredItems = items.filter((item) => {
-  //   return item.toLowerCase().includes(query.toLowerCase());
-  // });
 
-  // const nodupliateitems = [...new Set(filteredItems)];
+
   const createList = (listName) => {
     Axios.post(`${apiURL}/api/v1/finalcheck/createList`, {
       title: listName
@@ -33,6 +30,7 @@ export default function Home(props) {
       let newListID = res.data.rows[0].id
       let urlString = `/list/${newListID}`
       console.log("urlStringNow is ", urlString)
+      setQuery(listName)
       navigate(urlString)
     });
 
@@ -94,23 +92,12 @@ export default function Home(props) {
         return output;
       })
     );
-  }, [items, apiURL]);
+  }, [apiURL]);
 
-  function handleArray(input, property) {
-    for (let i = 0; i < input.length; i++) {
-      setItems((oldArray) => [...oldArray, input[i][property]]);
-    }
-  }
-
-  // function handleObjectArray(input, propertyOne, propertyTwo) {
-  //   for (let i = 0; i < input.length; i++) {
-  //     setDataReponse((oldObject) => [
-  //       ...oldObject,
-  //       { id: input[i][propertyOne], title: propertyTwo },
-  //     ]);
-  //   }
-  // }
-
+  const filteredItems = dataResponse.filter((item) => {
+    console.log('item 123' + item.title)
+    return item.title.toLowerCase().includes(query.toLowerCase())
+  });
   function handleQuery(e) {
     props.listTitle(e.currentTarget.id);
   }
@@ -118,11 +105,6 @@ export default function Home(props) {
   function toggleCreateList() {
     setNewListClick((prev) => !prev);
   }
-  // function refresh(){
-  //     inputSearchRef.current.value = ""
-  //     inputRef.current.value = ""
-  //     setQuery("")
-  // }
 
   return (
     <div className="Home">
@@ -165,7 +147,7 @@ export default function Home(props) {
       <LoadingIndicator />
 
       <div className="search-output">
-        {dataResponse.map((item) => {
+        {filteredItems.map((item) => {
           let urlString = `list/${item.id}`;
           return (
             <Link to={urlString}>
@@ -180,23 +162,6 @@ export default function Home(props) {
           );
         })}
       </div>
-      {items.map(item => console.log("item is",item))}
-
-
-      {/* {nodupliateitems.map((item) => {
-          let urlString = `/list/${item}`;
-          return (
-            <Link to={urlString}>
-              <button
-                className="search-output-tile"
-                id={item}
-                onClick={handleQuery}
-              >
-                {item}
-              </button>
-            </Link>
-          );
-        })} */}
     </div>
   );
 }

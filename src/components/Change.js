@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { SlOptionsVertical, SlTrash } from "react-icons/sl";
 import { MdOutlineCancel } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-
+import DeleteModal from "./DeleteModal";
 // import { confirmAlert } from 'react-confirm-alert'
 import Axios from "axios";
 
@@ -18,11 +18,14 @@ export default function Change(props) {
   const [deleteSelect, setDeleteSelect] = useState(false);
   const [optionsSelect, setOptionsSelect] = useState(false);
   const [newSelect, setNewSelect] = useState(false);
-  const [currentSelect, setCurrentSelect] = useState(descriptionComp);
-
+  const [currentSelect, setCurrentSelect] = useState(test);
+  const [showModal, setShowModal] = useState("none")
   const apiURL = process.env.REACT_APP_API_URL;
   const inputRef = useRef();
 
+  const handleShowModal = (style) => {
+    setShowModal(style);
+  }
   function handleExit() {
     setOptionsSelect((prev) => !prev);
   }
@@ -61,28 +64,11 @@ export default function Change(props) {
 
   };
 
-  // function handleDeleteSelect() {
-  //     confirmAlert({
-  //         title: 'Confirm to submit',
-  //         message: 'Are you sure to do this.',
-  //         buttons: [
-  //           {
-  //             label: 'Yes',
-  //             onClick: () => alert('Click Yes')
-  //           },
-  //           {
-  //             label: 'No',
-  //             onClick: () => alert('Click No')
-  //           }
-  //         ]
-  //       })
-  // }
-
   function handleEditSelect() {
     if (selectComp === "category") {
       Axios.post(`${apiURL}/api/v1/finalcheck/editcategory`, {
         category: newSelect,
-        prevcategory: descriptionComp,
+        prevcategory: currentSelect,
         title: titleComp,
       })
         .then(() => {
@@ -90,18 +76,20 @@ export default function Change(props) {
           inputRef.current.value = "";
           setOptionsSelect((prev) => !prev);
           setCurrentSelect(newSelect);
+          props.handleChangeClick((prev) => !prev)
         })
         .catch((error) => console.log(error));
     } else if (selectComp === "title") {
       Axios.post(`${apiURL}/api/v1/finalcheck/edittitle`, {
         title: newSelect,
-        prevtitle: descriptionComp,
+        prevtitle: currentSelect,
       })
         .then(() => {
           console.log(`successfuly deleted ${selectComp}`);
           inputRef.current.value = "";
           setOptionsSelect((prev) => !prev);
           setCurrentSelect(newSelect);
+          props.handleChangeClick((prev) => !prev)
         })
         .catch((error) => console.log(error));
     }
@@ -109,9 +97,7 @@ export default function Change(props) {
 
   return (
     <>
-      {deleteSelect ? (
-        ""
-      ) : optionsSelect ? (
+      {optionsSelect ? (
         <div className="select-list-container">
           <div
             className="select-list-form"
@@ -130,37 +116,37 @@ export default function Change(props) {
                 selectComp === "title" ? { height: "40px" } : { height: "20px" }
               }
             >
-              {descriptionComp}
+              {currentSelect}
             </textarea>
             <button className="select-list-form-btn" onClick={handleEditSelect}>
               Edit
             </button>
           </div>
-          <div className="select-list-icons">
-            <SlTrash
-              onClick={handleDeleteSelect}
-              size={22}
-              style={
-                selectComp === "title"
-                  ? { color: "rgba(65,88,98, 0.8)" }
-                  : { color: "#5C5F62" }
-              }
-            />
-            <MdOutlineCancel
-              onClick={handleExit}
-              size={22}
-              style={
-                selectComp === "title"
-                  ? { color: "rgba(65,88,98, 0.8)", maxWidth: "70%" }
-                  : { color: "#5C5F62" }
-              }
-            />
-          </div>
+            <div className="select-list-icons">
+              <SlTrash
+                onClick={()=>setShowModal("block")}
+                size={22}
+                style={
+                  selectComp === "title"
+                    ? { color: "rgba(65,88,98, 0.8)" }
+                    : { color: "#5C5F62" }
+                }
+              />
+              <MdOutlineCancel
+                onClick={handleExit}
+                size={22}
+                style={
+                  selectComp === "title"
+                    ? { color: "rgba(65,88,98, 0.8)", maxWidth: "70%" }
+                    : { color: "#5C5F62" }
+                }
+              />
+            </div>
+            <DeleteModal currentSelect={currentSelect} showModal={showModal} handleShowModal={handleShowModal} handleDeleteSelect={handleDeleteSelect}/>
         </div>
       ) : (
         <div className="select-total-container">
-          {console.log("current select is", currentSelect)}
-          {selectComp === "title" ? test : currentSelect}
+          {currentSelect ? currentSelect : test}
           <div className="options">
             <th onClick={() => setOptionsSelect((prev) => !prev)}>
               <SlOptionsVertical
@@ -176,5 +162,5 @@ export default function Change(props) {
         </div>
       )}
     </>
-  );
+  )
 }

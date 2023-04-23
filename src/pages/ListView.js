@@ -57,6 +57,17 @@ export default function ListView(props) {
     setCategories([]);
     let i = 0;
     i++;
+
+    // when you start up the component construct the json of key which name of list to value which is array of string items 
+    var localList = localStorage.getItem("listkey", "json string")
+    if (localList != null) {
+      console.log(localStorage.getItem("listkey"))
+      // this will give you the most updated vrsion of the hson 
+    } else {
+      localStorage.setItem("listkey", "json string")
+    }
+
+
     Axios.get(`${apiURL}/api/v1/finalcheck/getlist${location.pathname}`)
       .then((response) => {
         setTitle(response.data.rows[0].title);

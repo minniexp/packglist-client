@@ -17,6 +17,8 @@ export default function NewList(props) {
   }
 
   const submitReview = () => {
+    var currentListJSON = localStorage.getItem("listkey")
+    localStorage.setItem("listkey", currentListJSON + "test")
     Axios.post(`${apiURL}/api/v1/finalcheck/additem`, {
       title: listName,
       category: newCategory,
